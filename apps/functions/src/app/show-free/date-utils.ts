@@ -24,7 +24,7 @@ export const getDayOfWeek = (selectedDate: string): string => {
 export const generateDateTitles = (selectedDate: string): DateTitle[] => {
   const result: DateTitle[] = [];
   const monday = getMonday(selectedDate);
-  for (let i = 0; i++; i < 6) {
+  for (let i = 0; i < 7; i++) {
     const date = new Date(monday);
     date.setDate(date.getDate() + i);
     const dateString = date.toISOString().substring(0, 10);

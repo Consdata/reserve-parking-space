@@ -6,7 +6,6 @@ import {DateTitle} from './date-name';
 function createMessage(reservedParkingSpacesInDays: Map<string, any[]>,
                        dateTitles: DateTitle[],
                        userName: string,
-                       date: string,
                        triggerId: string,
                        viewId: string) {
   const deskReservedBy = (date: string, parkingSpace: string): string => {
@@ -34,7 +33,7 @@ function createMessage(reservedParkingSpacesInDays: Map<string, any[]>,
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '*' + def.date + ', ' + def.dayOfWeek + '*'
+          text: '_' + def.date + ', ' + def.dayOfWeek + '_'
         }
       });
     parkingSpaces.forEach(parkingSpace => {
@@ -53,7 +52,7 @@ function createMessage(reservedParkingSpacesInDays: Map<string, any[]>,
               emoji: false,
               text: reservedBy === userName ? 'Cancel' : 'Reserve'
             },
-            value: date + '_' + parkingSpace,
+            value: def.date + '_' + parkingSpace,
             style: reservedBy != undefined ? 'danger' : 'primary',
             action_id: 'reserve'
           }
@@ -105,5 +104,5 @@ export const createShowFreeParkingSpacesMessage = async (firestore: admin.firest
         user: r.data().userName
       });
   });
-  return createMessage(reservedParkingSpacesInDays, generateDateTitles(date), userName, date, triggerId, viewId);
+  return createMessage(reservedParkingSpacesInDays, generateDateTitles(date), userName, triggerId, viewId);
 };
