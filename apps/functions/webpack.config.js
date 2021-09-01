@@ -9,7 +9,7 @@ module.exports = (config, context) => {
       libraryTarget: 'commonjs'
     },
     plugins: [
-      ...config.plugins,
+      // ...config.plugins,
       new GeneratePackageJsonPlugin(
         {
           "name": "reserve-parking-space.functions",
